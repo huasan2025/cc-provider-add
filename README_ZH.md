@@ -1,5 +1,7 @@
 # cc-provider-add
 
+[![tests](https://github.com/huasan2025/cc-provider-add/actions/workflows/test.yml/badge.svg)](https://github.com/huasan2025/cc-provider-add/actions/workflows/test.yml)
+
 > 把第三方 Anthropic 兼容 API 端点接入 Claude Code 的 skill。每个 provider 完全隔离，零二进制依赖，纯 shell + JSON。**永远不动** `~/.claude/`。
 
 [English](README.md) | [中文](README_ZH.md)

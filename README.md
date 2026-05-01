@@ -1,5 +1,7 @@
 # cc-provider-add
 
+[![tests](https://github.com/huasan2025/cc-provider-add/actions/workflows/test.yml/badge.svg)](https://github.com/huasan2025/cc-provider-add/actions/workflows/test.yml)
+
 > A Claude Code skill that wires third-party Anthropic-compatible API endpoints into Claude Code with full per-provider isolation. Zero binaries — just shell + JSON. Never touches `~/.claude/`.
 
 [English](README.md) | [中文](README_ZH.md)
