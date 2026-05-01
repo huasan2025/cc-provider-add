@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Secrets — anyone running the skill locally should never commit these
+*.env
+ai-secrets/
+
+# Per-provider isolated CC config dirs (in case the repo is also a working dir)
+.claude-*/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Editors
+.idea/
+.vscode/
+
+# Test scratch
+/tmp/
+*.log
