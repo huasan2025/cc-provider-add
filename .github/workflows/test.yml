@@ -7,6 +7,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Opt into Node.js 24 for JS actions (silences the v4 checkout deprecation
+# warning until actions/checkout publishes a version that defaults to node24).
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   test:
     strategy:

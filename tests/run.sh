@@ -115,7 +115,12 @@ configure_provider "$PROV_A" ANTHROPIC_API_KEY "$KEY_A" "$URL_A" "$MODEL_A"
 insert_case "$PROV_A"
 
 [[ -f "$HOME/.config/ai-secrets/$PROV_A.env" ]] && pass "secrets file exists" || miss "secrets file missing"
-perm=$(stat -f '%Lp' "$HOME/.config/ai-secrets/$PROV_A.env" 2>/dev/null || stat -c '%a' "$HOME/.config/ai-secrets/$PROV_A.env")
+# stat: GNU (Linux) syntax first, BSD (macOS) fallback. On Linux, `stat -f`
+# means --file-system and writes to stdout *before* failing, so it must not be
+# the first branch — its stdout would be captured into $perm even when the ||
+# fallback triggers. See: actions run 25221912793.
+perm=$(stat -c '%a' "$HOME/.config/ai-secrets/$PROV_A.env" 2>/dev/null \
+       || stat -f '%Lp' "$HOME/.config/ai-secrets/$PROV_A.env")
 [[ "$perm" == "600" ]] && pass "secrets mode 600" || miss "secrets mode is $perm"
 
 KEY_A_LAST20=$(printf '%s' "$KEY_A" | tail -c 20)
