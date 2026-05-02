@@ -22,9 +22,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install zsh (Linux only)
-        if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y zsh
+      # zsh is preinstalled on both ubuntu-latest and macos-latest runner
+      # images. Verify and fail-fast with a clear message if that ever changes,
+      # rather than depending on apt mirrors (which are flaky — see run
+      # 25238645428 where azure.archive.ubuntu.com DNS-failed for 6 minutes).
+      - name: Verify zsh is available
+        run: command -v zsh && zsh --version
 
       - name: Run skill test suite
         run: bash tests/run.sh
